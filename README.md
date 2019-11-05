@@ -10,6 +10,7 @@ Here are the steps I have taken:
 1. `npm install`
 1. Edit `rollup.config.js` and add `generate: ssr`
    to the object passed to the `svelte` plugin.
+1. `npm install express`
 1. Create `src/server.js`.
 1. Add the npm script `serve": "node src/server.js",`
    to `package.json`.
