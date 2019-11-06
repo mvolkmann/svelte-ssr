@@ -8,4 +8,8 @@
 	}
 </style>
 
+<svelte:head>
+  <title>My SSR Demo</title>
+</svelte:head>
+
 <h1>Hello {name}!</h1>

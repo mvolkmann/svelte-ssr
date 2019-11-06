@@ -8,19 +8,30 @@ app.get('/', (req, res) => {
   const {name = 'World'} = req.query;
 
   // Do the SSR action using a "name" prop.
+  // This is run on every request, not at build time.
+  // This allows different HTML to be generated based path and query parameters.
+  // But it seems undesirable from a performance standpoint if those are not used.
   const {head, css, html} = App.render({name});
-  //TODO: When will head be set?  I haven't seen that yet.
 
-  // Build the HTML output.
-  let output = '<!DOCTYPE output><output>';
-  output += '<head>';
-  if (head) output += head;
-  if (css && css.code) output += `<style>${css.code}</style>`;
-  output += '</head>';
-  output += '<body>${html}</body>';
-  output += '</output>';
+  console.log('server.js x: head =', head);
+  console.log('server.js x: css =', css);
+  console.log('server.js x: html =', html);
+  // head is set when <svelte:head> is used.
 
-  res.send(html);
+  const style = css.code ? `<style>${css.code}</style>` : '';
+  const template = `
+    <html>
+      <head>
+        ${head}
+        ${style}
+      </head>
+      <body>
+        ${html.trim()}
+      </body>
+    </html>
+  `;
+
+  res.send(template);
 });
 
 const PORT = 1919;
