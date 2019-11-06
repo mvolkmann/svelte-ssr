@@ -8,10 +8,12 @@ import rollup_start_dev from './rollup_start_dev';
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: 'src/main.js',
+  //input: 'src/main.js',
+  input: 'src/server.js',
   output: {
     sourcemap: true,
-    format: 'iife',
+    //format: 'iife',
+    format: 'cjs',
     name: 'app',
     file: 'public/bundle.js'
   },

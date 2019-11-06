@@ -17,7 +17,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "serve": "node src/server.js",
+    "serve": "node public/bundle.js",
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev"
   }
