@@ -12,14 +12,13 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "page": "^1.11.5",
     "sirv-cli": "^0.4.4"
   },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "serve": "node public/bundle.js",
-    "serve2": "node src/server2.js",
+    "serve": "node src/server.js",
+    "serve2": "node public/bundle.js",
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev"
   }

@@ -1,6 +1,5 @@
-require('svelte/register');
 const express = require('express');
-const App = require('./App.svelte');
+import App from './App.svelte';
 
 const app = express();
 
@@ -12,20 +11,21 @@ app.get('/', (req, res) => {
 
   // Render the App component with the "name" prop.
   // head is set when <svelte:head> is used.
-  const {head, css, html} = App.default.render({name});
+  const {head, css, html} = App.render({name});
 
   const style = css.code ? `<style>${css.code}</style>` : '';
+
   const template = `
-    <html>
-      <head>
-        ${head}
-        ${style}
-      </head>
-      <body>
-        ${html.trim()}
-      </body>
-    </html>
-  `;
+       <html>
+         <head>
+           ${head}
+           ${style}
+         </head>
+         <body>
+           ${html.trim()}
+         </body>
+       </html>
+     `;
 
   res.send(template);
 });

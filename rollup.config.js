@@ -7,13 +7,14 @@ import rollup_start_dev from './rollup_start_dev';
 
 const production = !process.env.ROLLUP_WATCH;
 
+const useSsr = true;
+const serverName = 'server2';
+
 export default {
-  //input: 'src/main.js',
-  input: 'src/server.js',
+  input: useSsr ? `src/${serverName}.js` : 'src/main.js',
   output: {
     sourcemap: true,
-    //format: 'iife',
-    format: 'cjs',
+    format: useSsr ? 'cjs' : 'iife',
     name: 'app',
     file: 'public/bundle.js'
   },
@@ -26,7 +27,7 @@ export default {
       css: css => {
         css.write('public/bundle.css');
       },
-      generate: 'ssr'
+      generate: useSsr ? 'ssr' : ''
     }),
 
     // If you have external dependencies installed from
