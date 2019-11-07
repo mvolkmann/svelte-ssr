@@ -1,31 +1,34 @@
-//TODO: Finish getting this to work with the svelte/register approach.
 require('svelte/register');
 const express = require('express');
-//import App from './App.svelte';
-const App = require('./App.svelte').default;
+const App = require('./App.svelte');
 
 const app = express();
 
 app.get('/', (req, res) => {
-  // Get "name" from query string.
+  // If the app uses path or query parameters,
+  // get the values from req.  For example,
+  // this gets the "name" from query parameter.
   const {name = 'World'} = req.query;
 
-  // Do the SSR action using a "name" prop.
-  //TODO: Should it run this again on every request?
-  const {head, css, html} = App.render({name});
-  //TODO: When will head be set?  I haven't seen that yet.
+  // Render the App component with the "name" prop.
+  // head is set when <svelte:head> is used.
+  const {head, css, html} = App.default.render({name});
 
-  // Build the HTML output.
-  let output = '<!DOCTYPE output><output>';
-  output += '<head>';
-  if (head) output += head;
-  if (css && css.code) output += `<style>${css.code}</style>`;
-  output += '</head>';
-  output += '<body>${html}</body>';
-  output += '</output>';
+  const style = css.code ? `<style>${css.code}</style>` : '';
+  const template = `
+    <html>
+      <head>
+        ${head}
+        ${style}
+      </head>
+      <body>
+        ${html.trim()}
+      </body>
+    </html>
+  `;
 
-  res.send(html);
+  res.send(template);
 });
 
-const PORT = 1919;
+const PORT = 5000;
 app.listen(PORT, () => console.log('listening on port', PORT));
