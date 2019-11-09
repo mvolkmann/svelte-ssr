@@ -3,6 +3,8 @@ import App from './App.svelte';
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   // If the app uses path or query parameters,
   // get the values from req.  For example,
@@ -19,6 +21,7 @@ app.get('/', (req, res) => {
        <html>
          <head>
            ${head}
+           <script src="./public/bundle.js" />
            ${style}
          </head>
          <body>

@@ -4,6 +4,8 @@ const App = require('./App.svelte');
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   // If the app uses path or query parameters,
   // get the values from req.  For example,
@@ -15,10 +17,12 @@ app.get('/', (req, res) => {
   const {head, css, html} = App.default.render({name});
 
   const style = css.code ? `<style>${css.code}</style>` : '';
+
   const template = `
     <html>
       <head>
         ${head}
+        <script src="./public/bundle.js" />
         ${style}
       </head>
       <body>
