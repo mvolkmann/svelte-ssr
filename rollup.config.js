@@ -10,12 +10,17 @@ const production = !process.env.ROLLUP_WATCH;
 const serverName = 'server';
 
 export default {
-  input: 'src/main.js',
-  //input: `src/${serverName}.js`,
+  // Option #1
+  //input: 'src/main.js',
+  input: `src/${serverName}.js`,
+
   output: {
     sourcemap: true,
-    format: 'iife',
-    //format: 'cjs',
+
+    // Option #2
+    //format: 'iife',
+    format: 'cjs',
+
     name: 'app',
     file: 'public/bundle.js'
   },
@@ -28,7 +33,11 @@ export default {
       css: css => {
         css.write('public/bundle.css');
       },
+
+      // Option #3
       generate: 'ssr',
+
+      // Option #4
       hydratable: true
     }),
 
