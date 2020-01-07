@@ -1,24 +1,28 @@
 <script>
-	export let name;
+	//export let name;
+  let name = 'World';
 </script>
 
+<main>
+  <label>
+    Name:
+    <input bind:value={name} />
+  </label>
+	<h1>Hello {name}!</h1>
+</main>
+
 <style>
+	main {
+		text-align: center;
+		padding: 1em;
+		max-width: 240px;
+		margin: 0 auto;
+	}
+
 	h1 {
-		color: purple;
-  }
-
-  label {
-    display: inline-block;
-  }
+		color: #ff3e00;
+		text-transform: uppercase;
+		font-size: 4em;
+		font-weight: 100;
+	}
 </style>
-
-<svelte:head>
-  <title>My SSR Demo</title>
-</svelte:head>
-
-<div>
-  <label>Name</label>
-  <input bind:value={name} />
-</div>
-
-<h1>Hello {name}!</h1>
