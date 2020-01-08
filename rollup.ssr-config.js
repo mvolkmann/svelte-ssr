@@ -7,13 +7,15 @@ export default {
   output: {
     sourcemap: true,
     format: 'cjs',
+    //format: 'esm',
     //format: 'iife',
-    name: 'ssr',
+    //name: 'ssr',
     file: 'build/ssr.js'
   },
   plugins: [
     svelte({
-      generate: 'ssr'
+      generate: 'ssr',
+      hydratable: true
     })
   ]
 };
