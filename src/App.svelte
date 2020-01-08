@@ -1,5 +1,4 @@
 <script>
-	//export let name;
   let name = 'World';
 </script>
 
