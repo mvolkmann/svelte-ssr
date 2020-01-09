@@ -10,7 +10,7 @@ export default {
     //format: 'esm',
     //format: 'iife',
     //name: 'ssr',
-    file: 'build/ssr.js'
+    file: 'public/build/ssr.js'
   },
   plugins: [
     svelte({

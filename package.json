@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
-    "build:server": "rollup -c rollup.ssr-config.js",
+    "copy:app": "cp src/App.svelte public",
+    "build:ssr": "rollup -c rollup.ssr-config.js",
+    "build:server": "run-s build build:ssr copy:app",
     "dev": "rollup -c -w",
     "serve": "node src/server",
     "start": "sirv public"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^11.0.0",
+    "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^6.0.0",
+    "npm-run-all": "^4.1.5",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",

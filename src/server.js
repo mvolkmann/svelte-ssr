@@ -1,7 +1,11 @@
 const express = require('express');
+//const path = require('path');
 require('svelte/register');
 
 const app = express();
+
+//app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static('public'));
 
 const template = `
   <html>
@@ -10,6 +14,13 @@ const template = `
       <style>
         CSS
       </style>
+      <script type='module'>
+		    import App from './App.svelte';
+		    new App({
+          hydrate: true,
+          target: document.body
+        });
+    	</script>
     </head>
     <body>
       HTML
