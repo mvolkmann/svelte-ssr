@@ -11,8 +11,7 @@ const template = `
       <script type='module'>
 		    import App from './build/App.svelte';
 		    new App({
-          hydrate: true,
-          target: document.body
+          hydrate: true
         });
     	</script>
     </head>

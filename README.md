@@ -1,14 +1,18 @@
 # svelte-ssr
 
-This is an attempt to implement server-side rendering (SSR)
-in a Svelte application.
+This implements server-side rendering (SSR) in a Svelte application.
 
-To build this, enter `npm install` and `npm run build:server`.
-To start the server, enter `npm run serve`.
-Browse localhost:1919.
+To run the app locally without SSR:
+
+- enter `npm run dev`
+- browse localhost:5000.
+
+To run the app with SSR:
+
+- enter `npm install`
+- enter `npm run build:ssr`
+- enter `npm run serve`
+- browse localhost:1919
 
 The primary files to examine are
 `src/App.svelte`, `src/server.js`, and `rollup.ssr-config.js`.
-
-To run this app locally where it works correctly,
-enter `npm run dev` and browse localhost:5000.
