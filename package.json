@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
-    "copy:app": "cp src/App.svelte public",
+    "copy:app": "cp src/App.svelte public/build",
     "build:ssr": "rollup -c rollup.ssr-config.js",
     "build:server": "run-s build build:ssr copy:app",
     "dev": "rollup -c -w",

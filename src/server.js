@@ -1,11 +1,5 @@
 const express = require('express');
-//const path = require('path');
 require('svelte/register');
-
-const app = express();
-
-//app.use(express.static(path.resolve(__dirname, 'public')));
-app.use(express.static('public'));
 
 const template = `
   <html>
@@ -15,7 +9,7 @@ const template = `
         CSS
       </style>
       <script type='module'>
-		    import App from './App.svelte';
+		    import App from './build/App.svelte';
 		    new App({
           hydrate: true,
           target: document.body
@@ -28,9 +22,12 @@ const template = `
   </html>
 `;
 
+const app = express();
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   // See https://svelte.dev/docs#Server-side_component_API
-  const App = require('../build/ssr.js');
+  const App = require('../public/build/ssr.js');
   const {head, html, css} = App.render({
     name: 'World'
   });
