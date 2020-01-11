@@ -1,4 +1,5 @@
 <script>
+  import Child from './Child.svelte';
   let name = 'World';
 </script>
 
@@ -8,6 +9,7 @@
     <input bind:value={name} />
   </label>
 	<h1>Hello {name}!</h1>
+  <Child {name} />
 </main>
 
 <style>
