@@ -1,6 +1,8 @@
 const express = require('express');
 require('svelte/register');
 
+const name = 'Planet';
+
 const template = `
   <html>
     <head>
@@ -22,17 +24,19 @@ const template = `
 `;
 
 const app = express();
+//express.static.mime.define({'text/html': ['svelte']});
+app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/ssr', (req, res) => {
   // See https://svelte.dev/docs#Server-side_component_API
   const App = require('../public/build/ssr.js');
-  const {head, html, css} = App.render({
-    name: 'World'
-  });
+  const {head, html, css} = App.render({name});
+  console.log('server.js x: html =', html);
   const result = template
     .replace('HEAD', head)
     .replace('CSS', css.code)
     .replace('HTML', html);
+  res.set('Content-Type', 'text/html');
   res.end(result);
 });
 
