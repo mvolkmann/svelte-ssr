@@ -22,7 +22,6 @@ const template = `
 `;
 
 const app = express();
-app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   // See https://svelte.dev/docs#Server-side_component_API

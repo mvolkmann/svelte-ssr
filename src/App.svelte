@@ -1,6 +1,6 @@
 <script>
   import Child from './Child.svelte';
-  let name = 'World';
+  export let name = 'World';
 </script>
 
 <main>
